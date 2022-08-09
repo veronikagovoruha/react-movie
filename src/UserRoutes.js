@@ -2,7 +2,6 @@ import { Routes, Route} from "react-router-dom"
 import { lazy, Suspense } from "react";
 
 const HomePage =  lazy(() => import("./pages/HomePage/HomePage"));
-const NotFoundPage =  lazy(() => import("./pages/NotFoundPage"));
 const SingleMoviePage =  lazy(() => import("./pages/SingleMoviePage"));
 const MovieCastPage =  lazy(() => import("./pages/MovieCastPage"));
 const MovieSearchPage =  lazy(() => import("./pages/MovieSearchPage"));
@@ -18,7 +17,7 @@ const UserRoutes = () =>{
                 <Route path="cast"  element={<MovieCastPage />}/>
                 <Route path="reviews"  element={<ReviewsPage />}/>
                 </Route>
-                <Route path="*"  element={<NotFoundPage />}/>
+                <Route path="*"  element={<HomePage />}/>
             </Routes> 
         </Suspense>
         
