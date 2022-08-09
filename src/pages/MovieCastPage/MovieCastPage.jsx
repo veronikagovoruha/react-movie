@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import defaulImg from '../../images/user.png';
+import styles from "./movie-cast-page.module.css"
 
 import PropTypes from 'prop-types';
 
@@ -30,14 +32,12 @@ const MovieCastPage = () =>{
     }, [movieId])
 
     const elements = cast && cast.map(({ id, name, character, profile_path }) => {
-        const srcUrl = profile_path ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${profile_path}` : "no pic";
+        const srcUrl = profile_path ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${profile_path}` : defaulImg;
 
-        return (<li key={id}>
-            <img src={srcUrl} width="80" alt={name}/>
-            <div>
-                <p>{name}</p>
-                <p>{character}</p>
-            </div>
+        return (<li key={id} className={styles.item}>
+            <img className={styles.icon} src={srcUrl} width="80" alt={name}/>
+            <p className={styles.nameReal}>{name}</p>
+            <p className={styles.name}>{character}</p>
         </li>);
     })
     
@@ -45,7 +45,7 @@ const MovieCastPage = () =>{
         <>
         {loading && <p>....Loading</p>}
         {error && <p>Error</p>}
-        <ul>
+        <ul className={styles.list}>
             {elements} 
         </ul>
         </>

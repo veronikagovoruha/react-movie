@@ -1,0 +1,52 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+  
+  .poster {
+    margin: 0 auto;
+    width: 360px;
+  }
+  .wraperDescripton {
+    margin-left: 30px;
+    text-align: initial;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  .userScore {
+    font-size: 16px;
+  }
+  .Overviev {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .OvervievText {
+    font-size: 16px;
+  }
+
+  .list{
+    list-style: none;
+    text-decoration: none;
+  }
+
+  .item{
+    border: 1px solid black;
+    padding: 4px;
+    margin-top: 10px; 
+    width: 60px;
+  }
+
+  .item:first-child{
+    margin-top: 0; 
+  }
+
+  .link{
+    text-decoration: none;
+    color: black;
+  }

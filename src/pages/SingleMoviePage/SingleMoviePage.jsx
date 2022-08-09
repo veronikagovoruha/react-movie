@@ -2,6 +2,7 @@ import SingleMovie from "../../components/SingleMovie";
 import {getMovieDetails} from "../../shared/services/theMovieApi"
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import styles from "./single-movie-page.module.css"
 
 const SingleMoviePage = () => {
     
@@ -40,7 +41,7 @@ const SingleMoviePage = () => {
             <div>
                 {loading && <p>...Loading</p>}
                 {error && <p>Movie not found</p>}
-                {isMovie && <button type='button' onClick={goBack}>Go back</button>}
+                {isMovie && <button className={styles.btnBack} type='button' onClick={goBack}>Go back</button>}
                 {isMovie && <SingleMovie movie={movie}/>}
             </div>
         </main>

@@ -1,0 +1,20 @@
+.form {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .input {
+    width: 300px;
+    padding: 4px;
+    font-size: 20px;
+  }
+  
+  .button {
+    width: 60px;
+    margin-left: 5px;
+    background-color: rgb(96, 186, 156);
+    outline: transparent;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }
