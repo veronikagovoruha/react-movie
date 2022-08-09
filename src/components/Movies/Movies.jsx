@@ -24,7 +24,7 @@ const Movies = ()=>{
         };
 
         fetchMovies();
-    }, [movies]);
+    }, []);
     
     return(
         <>
