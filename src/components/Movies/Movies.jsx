@@ -1,47 +1,36 @@
 import { useState, useEffect } from "react";
 import MoviesList from "../MoviesList";
+import styles from "../MoviesList/movie-list.module.css"
 
 import { getTrendingMovies } from "../../shared/services/theMovieApi"
 
 const Movies = ()=>{
-    const [state, setState] = useState({
-        movies: [],
-        loading: false,
-        error: null,
-    });
+
+    const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         const fetchMovies = async () => {
-            setState(prevState => ({
-                ...prevState,
-                loading: true
-            }))
+            setLoading(() => true)
             try {
                 const data = await getTrendingMovies();
-                setState(prevState => ({
-                    ...prevState,
-                    movies: [...data],
-                    loading: false
-                }))
+                setMovies(() => data);
+                setLoading(() => false);
             } catch (error) {
-                setState(prevState => ({
-                    ...prevState,
-                    loading: false,
-                    error
-                }))
+                setError(() => error);
+                setLoading(() => false);
             }
         };
 
         fetchMovies();
     }, []);
-
-    const {movies, loading, error} = state
-
     
     return(
         <>
         {loading && <p>....Loading</p>}
         {error && <p>Error</p>}
+        <h1 className={styles.title}>Trending Today</h1> 
         <MoviesList movies={movies}/>
         </>
     )

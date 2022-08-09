@@ -4,42 +4,29 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const SingleMoviePage = () => {
-
-    const [state, setState] = useState({
-        movie: {},
-        loading: false,
-        error: null,
-    });
+    
+    const [movie, setMovie] = useState({});
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const {movieId} = useParams();
 
     useEffect(()=> {
         const fetchMovie = async() => {
-            setState(prevState => ({
-                ...prevState,
-                loading: true
-            }));
+            setLoading(() => true);
 
             try {
                 const movie = await getMovieDetails(movieId);
-                setState(prevState => ({
-                    ...prevState,
-                    movie: movie,
-                    loading: false
-                }))
+                setMovie(() => movie)
+                setLoading(() => false);
             } catch (error) {
-                setState(prevState => ({
-                    ...prevState,
-                    loading: false,
-                    error
-                }))
+                setError(() => error);
+                setLoading(() => false);
             }
         };
 
         fetchMovie();
     }, [movieId])
-
-    const { movie, loading, error } = state;
 
     const isMovie = Object.keys(movie).length > 0;
 

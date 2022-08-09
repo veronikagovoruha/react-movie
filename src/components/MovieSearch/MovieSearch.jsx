@@ -7,36 +7,29 @@ import MoviesList from "../MoviesList";
 import { searchMovies } from "../../shared/services/theMovieApi"
 
 const MovieSearch = () => {
-    const [state, setState] = useState({
-        movies:[],
-        loading: false,
-        error: null,
-    });
+    // const [state, setState] = useState({
+    //     movies:[],
+    //     loading: false,
+    //     error: null,
+    // });
 
-    // const [search, setSearch] = useState("");
+    const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
     const [searchParems, setSearchParams] = useSearchParams();
     const search = searchParems.get("search");
 
     useEffect(() => {
         const fetchMovies = async() => {
-            // setSearch(prevState => ({
-            //     ...prevState,
-            //     loading: true,
-            // }));
-
+            setLoading(() => true)
             try {
                 const data = await searchMovies(search);
-                setState(prevState => ({
-                    ...prevState,
-                    movies: data,
-                    loading: false
-                }))
+                setMovies(() => data);
+                setLoading(() => false);
             } catch (error) {
-                setState(prevState => ({
-                    ...prevState,
-                    loading:false,
-                    error
-                }))
+                setError(() => error);
+                setLoading(() => false);
             }
         };
 
@@ -47,10 +40,10 @@ const MovieSearch = () => {
 
     const changeSearch = ({search}) => setSearchParams({search});
 
-    const { movies, loading, error} = state;
-
     return(
         <div>
+            {loading && <p>....Loading</p>}
+            {error && <p>Error</p>}
             <MovieSearchForm onSubmit={changeSearch}/>
             <MoviesList movies={movies}/>
         </div>
